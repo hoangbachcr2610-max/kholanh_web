@@ -1,0 +1,19 @@
+{
+  "serial_port": "COM6",
+  "baud": 9600,
+  "parity": "N",
+  "sensor_id": 1,
+  "relay_id": 255,
+  "function": 3,
+  "hum_first": true,
+  "poll_interval": 1.0,
+  "debounce": 3,
+  "min_switch": 10,
+  "log_interval": 10,
+  "retention_days": 365,
+  "host": "0.0.0.0",
+  "port": 8000,
+  "secure_cookie": false,
+  "tunnel_bin": "cloudflared",
+  "session_hours": 12
+}

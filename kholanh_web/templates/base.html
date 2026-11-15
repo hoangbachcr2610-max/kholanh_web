@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Giám sát kho lạnh{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+{% if me %}
+<header>
+  <h1>Giám sát kho lạnh</h1>
+  <nav>
+    <a href="{{ url_for('dashboard') }}" class="{{ 'cur' if page=='dash' }}">Tổng quan</a>
+    <a href="{{ url_for('history_page') }}" class="{{ 'cur' if page=='hist' }}">Lịch sử</a>
+    {% if me['role'] == 'admin' %}
+    <a href="{{ url_for('connection_page') }}" class="{{ 'cur' if page=='conn' }}">Thiết bị</a>
+    <a href="{{ url_for('remote_page') }}" class="{{ 'cur' if page=='remote' }}">Từ xa</a>
+    <a href="{{ url_for('users_page') }}" class="{{ 'cur' if page=='users' }}">Tài khoản</a>
+    {% endif %}
+    <a href="{{ url_for('account_page') }}" class="{{ 'cur' if page=='acc' }}">{{ me['username'] }} ({{ me['role'] }})</a>
+    <form method="post" action="{{ url_for('logout') }}"><button class="link" type="submit">Đăng xuất</button></form>
+  </nav>
+</header>
+{% endif %}
+{% block body %}{% endblock %}
+{% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% set page = 'remote' %}
+{% block body %}
+<div class="card">
+  <h2>1. Cùng mạng Wi-Fi / LAN</h2>
+  <div class="muted">Điện thoại và laptop dùng chung một Wi-Fi. Không cần cài thêm gì.</div>
+  <div id="lan-st" class="status"></div>
+  <div class="urlrow"><input id="lan-url" type="text" readonly><button id="lan-copy" class="btn2">Sao chép</button></div>
+</div>
+
+<div class="card">
+  <h2>2. Tailscale (VPN riêng, khuyên dùng)</h2>
+  <div class="muted">Khác mạng hay dùng 4G đều được. Cài Tailscale trên điện thoại, đăng nhập cùng tài khoản rồi mở địa chỉ bên dưới. Không công khai ra Internet.</div>
+  <div id="ts-st" class="status"></div>
+  <div class="urlrow"><input id="ts-url" type="text" readonly><button id="ts-copy" class="btn2">Sao chép</button><button id="ts-check" class="btn2">Kiểm tra lại</button></div>
+</div>
+
+<div class="card">
+  <h2>3. Cloudflare Tunnel (link Internet)</h2>
+  <div class="muted">Link https công khai, mở bằng trình duyệt, điện thoại không cần cài app. Cần đã cài cloudflared. Link thay đổi mỗi lần bật.</div>
+  <div id="cf-st" class="status"></div>
+  <div class="urlrow"><input id="cf-url" type="text" readonly><button id="cf-copy" class="btn2">Sao chép</button><button id="cf-toggle">Bật tunnel</button></div>
+  <p><label><input id="cf-auto" type="checkbox">Tự bật tunnel mỗi khi chương trình khởi động</label></p>
+  <div id="msg" class="err"></div>
+  <div class="muted">⚠ Ai có link đều mở được trang đăng nhập. Hãy dùng mật khẩu mạnh cho mọi tài khoản (chương trình tự khóa tạm khi đăng nhập sai nhiều lần).</div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='common.js') }}"></script>
+<script src="{{ url_for('static', filename='remote.js') }}"></script>
+{% endblock %}

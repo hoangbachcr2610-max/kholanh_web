@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% set page = 'hist' %}
+{% block body %}
+<div class="card">
+  <div class="row">
+    <label for="range">Khoảng thời gian:</label>
+    <select id="range">
+      <option value="1">1 giờ</option><option value="6">6 giờ</option>
+      <option value="24" selected>24 giờ</option><option value="168">7 ngày</option>
+      <option value="720">30 ngày</option>
+    </select>
+    <a class="btn small" id="csv" href="#">Tải CSV</a>
+  </div>
+  <div id="info" class="muted" style="margin-top:6px"></div>
+</div>
+<div class="card">
+  <h2>Nhiệt độ (°C)</h2><canvas id="c1"></canvas>
+  <h2>Độ ẩm (%RH)</h2><canvas id="c2"></canvas>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='common.js') }}"></script>
+<script src="{{ url_for('static', filename='history.js') }}"></script>
+{% endblock %}

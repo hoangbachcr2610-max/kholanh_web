@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% set page = 'users' %}
+{% block body %}
+<div id="meid" data-id="{{ me['id'] }}" hidden></div>
+<div class="card">
+  <h2>Thêm tài khoản</h2>
+  <div class="row">
+    <input id="nu" type="text" placeholder="Tên đăng nhập" autocomplete="off" autocapitalize="none">
+    <input id="np" type="password" placeholder="Mật khẩu (≥ 8 ký tự)" autocomplete="new-password">
+    <select id="nr">{% for r in roles %}<option value="{{ r }}">{{ r }}</option>{% endfor %}</select>
+    <button id="add">Thêm</button>
+  </div>
+  <div id="addmsg" class="err"></div>
+  <div class="muted">viewer: chỉ xem · operator: + chế độ, bật/tắt quạt, đổi ngưỡng · admin: + failsafe, thiết bị, từ xa, quản lý tài khoản</div>
+</div>
+<div class="card scroll">
+  <h2>Danh sách tài khoản</h2>
+  <table><thead><tr><th>Tên</th><th>Quyền</th><th>Trạng thái</th><th>Đăng nhập gần nhất</th><th></th></tr></thead>
+  <tbody id="ulist"></tbody></table>
+</div>
+<div class="card scroll">
+  <h2>Nhật ký thao tác (60 gần nhất)</h2>
+  <table><thead><tr><th>Thời gian</th><th>Người dùng</th><th>IP</th><th>Hành động</th><th>Chi tiết</th></tr></thead>
+  <tbody id="alist"></tbody></table>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='common.js') }}"></script>
+<script src="{{ url_for('static', filename='users.js') }}"></script>
+{% endblock %}

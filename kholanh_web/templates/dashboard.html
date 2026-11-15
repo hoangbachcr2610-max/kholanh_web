@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% set page = 'dash' %}
+{% block body %}
+<div style="display:flex;justify-content:flex-end;margin-bottom:8px"><span id="conn" class="pill">...</span></div>
+<div id="banner" class="banner">● BÌNH THƯỜNG</div>
+<div id="simbar" class="banner sim" hidden>⚠ CHẾ ĐỘ MÔ PHỎNG: dữ liệu GIẢ, không phải kho thật</div>
+
+<div class="grid">
+  <div class="card"><h2>Nhiệt độ</h2><div id="temp" class="big t">--</div></div>
+  <div class="card"><h2>Độ ẩm</h2><div id="hum" class="big h">--</div></div>
+</div>
+<div id="upd" class="muted" style="margin:-4px 0 12px">Đang tải dữ liệu...</div>
+
+<div class="card">
+  <h2>Chế độ điều khiển</h2>
+  <div class="seg"><button id="m-auto">Tự động</button><button id="m-manual">Thủ công</button></div>
+  <div id="permhint" class="muted" style="margin-top:6px"></div>
+</div>
+
+<div class="card">
+  <h2>Quạt</h2>
+  <div class="fan"><span class="name">Quạt 1 (theo nhiệt độ)</span><span id="f0s" class="state">TẮT</span><button id="f0b">Bật quạt</button></div>
+  <div class="fan"><span class="name">Quạt 2 (theo độ ẩm)</span><span id="f1s" class="state">TẮT</span><button id="f1b">Bật quạt</button></div>
+  <div id="fanhint" class="muted"></div>
+  <div class="fan" style="margin-top:14px">
+    <label class="name" for="failsafe">Khi mất tín hiệu cảm biến</label>
+    <select id="failsafe"><option>Giữ nguyên</option><option>Bật cả hai quạt</option><option>Tắt cả hai quạt</option></select>
+  </div>
+  <div id="fsmsg" class="muted" style="min-height:1.4em"></div>
+  <div class="muted">Chỉ có tác dụng ở chế độ Tự động, sau khi đọc lỗi liên tiếp đủ số mẫu cấu hình.</div>
+</div>
+
+<div class="card">
+  <h2>Đồ thị gần đây</h2>
+  <div class="muted">Nhiệt độ (°C)</div><canvas id="c1"></canvas>
+  <div class="muted">Độ ẩm (%RH)</div><canvas id="c2"></canvas>
+</div>
+
+<div class="card">
+  <h2>Ngưỡng</h2>
+  <div class="thr">
+    <label for="t_high">Nhiệt độ cao (°C)</label><input id="t_high" type="number" step="0.5" inputmode="decimal">
+    <label for="t_low">Nhiệt độ thấp (°C)</label><input id="t_low" type="number" step="0.5" inputmode="decimal">
+    <label for="h_high">Độ ẩm cao (%RH)</label><input id="h_high" type="number" step="1" inputmode="decimal">
+    <label for="h_low">Độ ẩm thấp (%RH)</label><input id="h_low" type="number" step="1" inputmode="decimal">
+    <label for="t_hyst">Trễ nhiệt độ (°C)</label><input id="t_hyst" type="number" step="0.5" inputmode="decimal">
+    <label for="h_hyst">Trễ độ ẩm (%RH)</label><input id="h_hyst" type="number" step="1" inputmode="decimal">
+  </div>
+  <p><button id="savethr">Lưu ngưỡng</button> <span id="thrmsg" class="muted"></span></p>
+</div>
+
+<div class="card"><h2>Nhật ký</h2><div id="events" class="ev"></div></div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='common.js') }}"></script>
+<script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+{% endblock %}

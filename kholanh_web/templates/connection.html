@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% set page = 'conn' %}
+{% block body %}
+<div class="card">
+  <h2>1. Kết nối Modbus RTU</h2>
+  <div class="cgrid">
+    <div class="full">
+      <label for="port">Cổng COM</label>
+      <div class="inline">
+        <select id="portsel"></select>
+        <button id="refresh" class="btn2" title="Quét lại cổng COM">↻</button>
+      </div>
+      <input id="port" type="text" placeholder="Hoặc gõ tay tên cổng, ví dụ COM9" autocomplete="off" style="margin-top:6px">
+      <div id="portnote" class="muted"></div>
+    </div>
+    <div><label for="baud">Baud</label><select id="baud"></select></div>
+    <div><label for="parity">Parity</label>
+      <select id="parity"><option value="N">None</option><option value="E">Even</option><option value="O">Odd</option></select></div>
+    <div><label for="interval">Chu kỳ đọc (s)</label><input id="interval" type="number" min="0.3" max="60" step="0.1"></div>
+    <div><label for="sensor_id">ID cảm biến</label><input id="sensor_id" type="number" min="1" max="255"></div>
+    <div><label for="relay_id">ID relay</label><input id="relay_id" type="number" min="1" max="255"></div>
+    <div><label for="function">Function đọc</label>
+      <select id="function"><option value="3">03</option><option value="4">04</option></select></div>
+    <div><label for="hum_first">Thanh ghi 0 là</label>
+      <select id="hum_first"><option value="1">Độ ẩm, Nhiệt độ</option><option value="0">Nhiệt độ, Độ ẩm</option></select></div>
+    <div class="full"><label style="font-size:15px;color:var(--fg)"><input id="simulate" type="checkbox">Chế độ mô phỏng (không cần phần cứng, dữ liệu GIẢ)</label></div>
+  </div>
+  <div id="status" class="status">Đang tải...</div>
+  <div class="row">
+    <button id="toggle">KẾT NỐI</button>
+    <button id="apply" class="btn2" disabled>Áp dụng</button>
+  </div>
+  <div id="msg" class="err"></div>
+  <div class="muted">Thông số được lưu lại. Nếu đã bấm KẾT NỐI, sau khi mất điện hoặc khởi động lại máy chương trình sẽ tự kết nối lại,
+  và tự nối lại khi rút/cắm lại USB-RS485. Bấm "Áp dụng" để đổi thông số khi đang kết nối (chương trình nối lại ngay với thông số mới).</div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='common.js') }}"></script>
+<script src="{{ url_for('static', filename='connection.js') }}"></script>
+{% endblock %}

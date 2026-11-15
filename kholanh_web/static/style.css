@@ -1,0 +1,62 @@
+:root{--bg:#f4f6f8;--card:#fff;--fg:#1b1f24;--mut:#6b7280;--bd:#e2e6ea;
+      --ok:#198754;--bad:#dc3545;--blue:#0b5ed7;--btn:#0b5ed7;--btnfg:#fff;--warn:#b7791f}
+@media (prefers-color-scheme:dark){
+ :root{--bg:#111418;--card:#1b2026;--fg:#e8ebef;--mut:#9aa4af;--bd:#2b333b;--blue:#6ea8fe;--btn:#2f6fdc}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--fg);
+     font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+     padding:env(safe-area-inset-top) 12px 24px;max-width:900px;margin-inline:auto}
+header{display:flex;justify-content:space-between;align-items:center;padding:12px 0;gap:8px;flex-wrap:wrap}
+h1{font-size:18px;margin:0}
+h2{font-size:14px;margin:0 0 8px;color:var(--mut);font-weight:600}
+nav{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:14px}
+nav a{color:var(--blue);text-decoration:none;padding:4px 8px;border-radius:8px}
+nav a.cur{background:var(--bd);color:var(--fg)}
+nav form{display:inline;margin:0}
+nav .link{background:none;color:var(--mut);padding:4px 8px;font-size:14px}
+.pill{font-size:12px;padding:3px 10px;border-radius:999px;background:var(--mut);color:#fff}
+.pill.good{background:var(--ok)} .pill.warn{background:var(--warn)}
+.banner{border-radius:12px;padding:12px;text-align:center;font-weight:700;color:#fff;background:var(--ok);margin-bottom:12px}
+.banner.bad{background:var(--bad)} .banner.sim{background:var(--warn)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px;margin-bottom:12px}
+.grid .card{margin:0}
+.big{font-size:34px;font-weight:700}
+.big.t{color:var(--blue)} .big.h{color:var(--ok)} .big.alarm{color:var(--bad)}
+.muted{color:var(--mut);font-size:13px}
+.seg{display:flex;gap:8px}
+button,.btn{font:inherit;border:0;border-radius:10px;padding:10px 14px;background:var(--btn);color:var(--btnfg);cursor:pointer;text-decoration:none;display:inline-block}
+button:disabled{opacity:.4;cursor:not-allowed}
+button.danger{background:var(--bad)} button.small,.btn.small{padding:5px 10px;font-size:13px}
+.seg button{flex:1;background:var(--bd);color:var(--fg)}
+.seg button.active{background:var(--btn);color:var(--btnfg)}
+.fan{display:flex;align-items:center;gap:10px;margin:8px 0}
+.fan .name{flex:1}
+.state{font-size:12px;font-weight:700;padding:4px 10px;border-radius:8px;color:#fff;background:var(--mut)}
+.state.on{background:var(--ok)}
+canvas{width:100%;height:140px;display:block;margin-bottom:8px}
+.thr{display:grid;grid-template-columns:1fr 100px;gap:8px;align-items:center}
+select,input[type=text],input[type=password],input[type=number]{font:inherit;padding:8px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--fg);width:100%}
+.fan select{width:auto}
+.ev{font:13px/1.5 ui-monospace,Consolas,monospace;word-break:break-word}
+.ev .alarm{color:var(--bad)} .ev .ok{color:var(--ok)}
+.form{display:grid;gap:10px;max-width:380px}
+.form label{font-size:14px;color:var(--mut)}
+.err{color:var(--bad);font-size:14px;min-height:1.3em} .okmsg{color:var(--ok);font-size:14px}
+.login{max-width:380px;margin:12vh auto 0}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:6px 4px;border-bottom:1px solid var(--bd);vertical-align:middle}
+.scroll{overflow-x:auto}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.row select,.row input{width:auto}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.cgrid label{display:block;font-size:13px;color:var(--mut);margin-bottom:3px}
+.cgrid .full{grid-column:1/-1}
+.inline{display:flex;gap:6px}.inline input{flex:1}
+.inline button{padding:8px 12px}
+.status{font-size:14px;margin:10px 0;min-height:1.4em}
+.status.ok{color:var(--ok)}.status.bad{color:var(--bad)}.status.warn{color:var(--warn)}
+.urlrow{display:flex;gap:8px;flex-wrap:wrap}.urlrow input{flex:1;min-width:200px}
+.btn2{background:var(--bd);color:var(--fg)}
+input[type=checkbox]{width:auto;margin-right:6px}
